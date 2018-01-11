@@ -1,0 +1,1 @@
+This is a project for students learning Javascript as part of the Web Development 101 class of the Odin Project.
