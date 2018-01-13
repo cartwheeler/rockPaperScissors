@@ -2,11 +2,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>RockPaperScissors</title>
+<title>Rock Paper Scissors</title>
 <script type="text/javascript">
 
+function game() {
+
+var arrayPlayerResults = [];
+var arrayComputerResults = [];
+
+var i;
+for (i=1; i<6; i++) {
+	roundNumber = i;
+	console.log("Round Number: " + roundNumber)
+
 function computerRandom() {
-	return Math.floor(Math.random() * 3 + 1);
+return Math.floor(Math.random() * 3 + 1);
 }
 
 let random = computerRandom();
@@ -28,76 +38,115 @@ function computerPlay() {
 			return "impossible"
 		}
 }	
-console.log("Computer Selection is: " + computerPlay());
-	
-
-//function game() {
-
-//	for (i=1; i<6; i++) {
 		
-	function playRound(playerSelection, computerSelection) {
-		playerScore = 0;
-		computerScore = 0;
+function playRound(playerSelection, computerSelection) {	
+	playerScore = 0;
+	computerScore = 0;
+	totalPlayerScore = 0;
+	totalComputerScore = 0;
 	if (playerSelection == "rock") {
 		if (computerSelection == "rock") {
 			playerScore = 0;
 			computerScore = 0;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "It's a draw!";
 		} else if (computerSelection == "paper") {
 			playerScore = 0;
 			computerScore = 1;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "You Lose! Paper beats Rock";
 		} else {
 			playerScore = 1;
 			computerScore = 0;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "You Win! Rock beats Scissors";
 		}
 	} else if (playerSelection == "paper") {
 		if (computerSelection == "paper") {
 			playerScore = 0;
 			computerScore = 0;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "It's a draw!";
 		} else if (computerSelection == "rock") {
 			playerScore = 1;
 			computerScore = 0;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "You Win! Paper beats Rock";
 		} else {
 			playerScore = 0;
 			computerScore = 1;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "You Lose! Scissors beats Paper";
 		} 
 	} else if (playerSelection == "scissors") {
 		if (computerSelection == "scissors") {
 			playerScore = 0;
 			computerScore = 0;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "It's a draw!";
 		} else if (computerSelection == "paper") {
 			playerScore = 1;
 			computerScore = 0;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "You Win! Scissors beats Paper";
 		} else {
 			playerScore = 0;
 			computerScore = 1;
+			arrayPlayerResults.push(playerScore);
+			arrayComputerResults.push(computerScore);
 			return "You Lose! Rock beats Scissors";
 		}
+	} else {
+		return "Your option is not valid";
 	}
-
 }
-//}
-//}
 
-
-const playerSelection = "paper"
-console.log("Player Selection is: " + playerSelection)
+playerOption = window.prompt("Please declare your option");
+playerSelection = playerOption.toLowerCase();
+console.log("Player Selection for Round " + i + ": " + playerSelection)
 
 const computerSelection = computerPlay()
+console.log("Computer Selection for Round " + i + ": " + computerPlay());
+
 console.log(playRound(playerSelection, computerSelection))
 
-console.log("Player Score: " + playerScore)
-console.log("Computer Score: " + computerScore)
+console.log("Player Score for Round " + i + ": " + playerScore)
+console.log("Computer Score for Round " + i + ": " + computerScore)
 
+}
 
-	</script>
+console.log("Player Results: " + arrayPlayerResults);
+console.log("Computer Results: " + arrayComputerResults);
+
+totalPlayerScore = arrayPlayerResults.reduce(function(arrayPlayerResults, otherPlayer) {
+	return arrayPlayerResults + otherPlayer;
+	 }, 0);
+totalComputerScore = arrayComputerResults.reduce(function(arrayComputerResults, otherComputer) {
+	return arrayComputerResults + otherComputer;
+	 }, 0);
+
+console.log("Total Player Score: " + totalPlayerScore)
+console.log("Total Computer Score: " + totalComputerScore)
+
+if (totalPlayerScore > totalComputerScore) {
+	return "Congratulations, You Won!"
+} else if (totalPlayerScore < totalComputerScore) {
+	return "You Lost, Try Again!"
+} else {
+	return "It's a draw!"
+}
+
+}
+
+</script>
 
 </head>
 
@@ -107,6 +156,3 @@ console.log("Computer Score: " + computerScore)
 </body>
 
 </html>
-
-
-
